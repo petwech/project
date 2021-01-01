@@ -29,6 +29,7 @@ Route::resource('payroll','AllowanceController');
 Route::get('payroll/{id}/edit/','AllowanceController@edit');
 Route::resource('deduction','DeductionController');
 Route::get('deduction/{id}/edit/','DeductionController@edit');
+Route::get('makeslip/{id}/edit/','EmployeeController@makeslip')->name('payslip.edit');
 //Route::Post('payroll/save','AllowanceController@store')->name('payroll.store');
 
 Route::resource('department','DepartmentController');

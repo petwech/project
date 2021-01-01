@@ -6,8 +6,8 @@ use App\Designation;
 use App\employee;
 use App\Department;
 use App\Employee_type;
-use http\Env\Response;
 use Illuminate\Http\Request;
+use Redirect,Response;
 
 class EmployeeController extends Controller
 {
@@ -264,12 +264,12 @@ class EmployeeController extends Controller
      *@param int $id
      * @return \Illuminate\Http\Response
      */
-    public function editslip($id)
+    public function makeslip($id)
     {
            {
-          $where = array('id' => $id);
-        $department = Department::where($where)->first();
-        return Response::json($department);
+          $where = array('emp_id' => $id);
+        $emp = employee::where($where)->first();
+        return Response::json($emp);
     }
     }
 

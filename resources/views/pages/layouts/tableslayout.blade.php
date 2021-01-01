@@ -157,10 +157,12 @@ $(document).ready(function(){
        /* Make PaySlip  */
  $('#makeslip').click(function () {
             
+             var id = $(this).data('id');
+            $.get('makeslip/'+id+'/edit', function (data) {
             
                 // $('#closebt').attr('href',"{{ route('deduction.index') }}");
                  //$('#form').attr('action',"{{ route('deduction.store') }}");
-                $('#customerCrudModal').html("Make Slip");
+                $('#customerCrudModal').html("Make Slip For");
                 $('#btn-save').html("Save");
                 $('#first').html("Employee Name:");
                  $('#f_row').attr('placeholder',"Full Name");
@@ -168,10 +170,11 @@ $(document).ready(function(){
                  $('#s_row').attr('placeholder',"Employee Number");
                 $('#btn-save').prop('disabled',false);
                 $('#depedit-modal').modal('show');
-                //$('#data_id').val(data.id);
-                //$('#f_row').val(data.allowance_type);
+                $('#data_id').val(data.emp_id);
+                $('#f_row').val(data.fname);
                 //$('#s_row').val(data.description);
-                //$('#address').val(data.address);
+                $('#customerCrudModal').html(data.fname);
+            });
     
         });
 

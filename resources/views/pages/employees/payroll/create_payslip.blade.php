@@ -59,11 +59,11 @@
     @foreach($allemp as $all)
       
       
-        <tr class="{{ $all->emp_id }}">
+        <tr id="id{{ $all->emp_id }}">
           <td style="vertical-align: middle;"><?php echo $i; ?></td>
           <td style="vertical-align: middle;">{{ $all->fname }}</td> 
           <td style="vertical-align: middle;">{{ $all->designation }}</td>     
-          <td style="vertical-align: middle;">{{ $all->id_no }}></td>
+          <td style="vertical-align: middle;">{{ $all->id_no }}</td>
           <td style="vertical-align: middle;">{{ $all->kra }}</td>
           <td style="vertical-align: middle;">{{ $all->nhif }}</td>
           <td style="vertical-align: middle;">{{ $all->nssf }}</td>          
@@ -72,7 +72,7 @@
 
              <form action="" method="POST">
          
-      <td align="center"><a href="#" data-id="{{ $all->emp_id }}" id="makeslip" data-toggle="modal"><i class="fa fa-edit"></i></a>
+      <td align="center"><a href="javascript:void(0)" data-id="{{ $all->emp_id }}" id="makeslip" data-toggle="modal"><i class="fa fa-edit"></i></a>
          <meta name="csrf-token" content="{{ csrf_token() }}">
           </td> 
 
