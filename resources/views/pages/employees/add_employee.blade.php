@@ -411,7 +411,7 @@
                                             <select class="form-control select2" name="emp_type" required>
                                                 <option selected="false">-- Select Employment Type --</option>
                                                 @foreach($type as $types)
-                                                <option value="{{ $types->id }}">{{ $types->id }}</option>
+                                                <option value="{{ $types->id }}">{{ $types->emp_type }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

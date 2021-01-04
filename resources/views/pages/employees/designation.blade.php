@@ -79,17 +79,20 @@
 
                                 <?php $i = 1;?>
                                 @foreach($desi as $des)
-                                <tr id="des_id_{{ $des->desi_id }}" >
+                                <tr id="desid{{ $des->desi_id }}" >
                                     <td>{{ $i }}</td>
                                     <td>{{ $des->designation }}</td>
                                     <td></td>
                                     <td></td>
                                     <td><form action="" method="POST">
-                        <a class="btn btn-info" id="show-customer" data-toggle="modal" data-id="{{ $des->desi_id }}" >Show</a>
-                        <a href="javascript:void(0)" class="btn btn-success" id="editdesi" data-toggle="modal" data-id="{{ $des->desi_id }}">Edit </a>
-                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                        
-                </form>
+                                                  <a href="javascript:void(0)" class="btn btn-success" id="des" data-toggle="modal" data-id="{{ $des->desi_id }}">Edit </a>
+
+                                                     <meta name="csrf-token" content="{{ csrf_token() }}">
+                                    
+                                   </td>
+                                   <td> <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <a id="delete-depart" data-id="{{ $des->desi_id }}" class="btn btn-danger delete-user">Delete</a></</td>
+                               </form>
                       </td>
                                 </tr>
                                 <?php $i++;  ?>

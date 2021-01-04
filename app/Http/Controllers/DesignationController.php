@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Designation;
 use App\Department;
 use Illuminate\Http\Request;
+use Redirect,Response;
 
 class DesignationController extends Controller
 {
@@ -62,16 +63,15 @@ class DesignationController extends Controller
     {
         //
     }
-
-    /**
+ /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Designation  $designation
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $where = array('id' => $id);
+        $where = array('desi_id' => $id);
         $designation = Designation::where($where)->first();
         return Response::json($designation);
     }

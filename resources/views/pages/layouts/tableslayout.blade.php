@@ -154,6 +154,26 @@
 <script>
 $(document).ready(function(){
 
+    
+/* Edit designation */
+ $('.box-body').on('click', '#des', function () {
+            var dedid = $(this).data('id');
+            $.get('edit_designation/'+dedid+'/edit', function (data) {
+                  $('#closebt').attr('href',"{{ route('deduction.index') }}");
+                  $('#form').attr('action',"{{ route('deduction.store') }}");
+                $('#customerCrudModal').html("Edit Deduction");
+                $('#btn-save').html("Update");
+                $('#btn-save').prop('disabled',false);
+                $('#depedit-modal').modal('show');
+                //$('#data_id').val(data.id);
+                //$('#f_row').val(data.deduction_type);
+                //$('#s_row').val(data.description);
+                //$('#address').val(data.address);
+           })
+        });
+
+
+
        /* Make PaySlip  */
  $('#makeslip').click(function () {
             
@@ -269,9 +289,9 @@ $(document).ready(function(){
                 $('#btn-save').prop('disabled',false);
 
                 $('#depedit-modal').modal('show');
-                $('#depart_id').val(data.id);
-                $('#department').val(data.department);
-                $('#description').val(data.description);
+                $('#data_id').val(data.id);
+                $('#f_row').val(data.department);
+                $('#s_row').val(data.description);
                 //$('#address').val(data.address);
            })
         });

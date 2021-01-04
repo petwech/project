@@ -9,9 +9,12 @@
                                           </div>
                                           <div class="modal-body">
                                               <form id="form" name="form" action="" method="POST">
-                                                  <input type="" name="data_id" id="data_id" >
+                                                  <input type="hidden" name="data_id" id="data_id" >
                                                   @csrf
                                                   <div class="row">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12" id="select">
+                                                      
+                                                    </div>
                                                       <div class="col-xs-12 col-sm-12 col-md-12">
                                                           <div class="form-group">
                                                               <strong id="first"></strong>
