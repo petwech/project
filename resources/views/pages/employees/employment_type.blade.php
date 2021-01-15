@@ -30,7 +30,7 @@
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="add_type" method="post">
+                                        <form action="{{route('emp_type.store')}}" method="post">
                                             <div class="col-md-12">
                                                 <input type="text" name="emp_type" class="form-control" placeholder="Enter Employee Type" required />
                                             </div>
@@ -76,13 +76,18 @@
                                     @foreach($emptype as $type)
                                         <tr class="{{ $type->id }}">
                                             <td>{{ $i }}</td>
-                                            <td>{{ $type->emp_type }}</td>
+                                            <td>{{$type->emp_type}}</td>
                                             <td>{{ $type->description }}</td>
+                                      <td>
+                                            <form action="" method="POST">
+                                                         <a href="javascript:void(0)" class="btn btn-success" id="emp_type" data-toggle="modal" data-id="{{ $type->id }}">Edit </a>
 
-                                            <td align="center"><a href="#edit_designation<?php //echo $desID; ?>" data-toggle="modal"><i class="fa fa-edit"></i></a>
-                                            </td>
-                                            <td align="center"><a href="#delete_designation<?php //echo $desID; ?>" data-toggle="modal"><i class="fa fa-trash text-danger"></i></a>
-                                            </td>
+                                                            <meta name="csrf-token" content="{{ csrf_token() }}">
+
+                                          </td>
+                                          <td>
+                                               <a id="deleteemp_type" data-id="{{ $type->id }}" class="btn btn-danger delete-user">Delete</a></</td>
+                                      </form>
                                         </tr>
                                         <?php $i++;  ?>
                                     @endforeach
@@ -91,6 +96,7 @@
 
                                     </tbody>
                                 </table>
+                                 @include('pages.modals.employeemodal')
                             </div>
                             <!-- ./box-body -->
 

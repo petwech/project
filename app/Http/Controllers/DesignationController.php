@@ -71,7 +71,7 @@ class DesignationController extends Controller
      */
     public function edit($id)
     {
-        $where = array('desi_id' => $id);
+        $where = array('id' => $id);
         $designation = Designation::where($where)->first();
         return Response::json($designation);
     }
@@ -87,15 +87,18 @@ class DesignationController extends Controller
     {
         //
     }
-
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Designation $designation)
+    * Remove the specified resource from storage.
+    *
+    * @param int $desi_id
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy( $desi_id)
     {
-        //
+      Designation::find($desi_id)->delete($desi_id);
+
+return response()->json([
+    'success' => 'Record deleted successfully!'
+]);
     }
 }

@@ -83,15 +83,15 @@
                                     <td>{{$dep->department}}</td>
                                     <td>{{$dep->description}}</td>
 
-                                   <td> 
+                                   <td>
                                      <form action="" method="POST">
                                                   <a href="javascript:void(0)" class="btn btn-success" id="editbtn" data-toggle="modal" data-id="{{ $dep->id }}">Edit </a>
 
                                                      <meta name="csrf-token" content="{{ csrf_token() }}">
-                                    
+
                                    </td>
-                                   <td> <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a id="delete-depart" data-id="{{ $dep->id }}" class="btn btn-danger delete-user">Delete</a></</td>
+                                   <td> 
+                                        <a id="delete-depart1" data-id="{{ $dep->id }}" class="btn btn-danger delete-user">Delete</a></</td>
                                </form>
                                 </tr>
 
@@ -100,7 +100,7 @@
 
                                 </tbody>
                             </table>
-                               
+
                          @include('pages.modals.employeemodal')
 
 
@@ -121,6 +121,6 @@
 
     </section>
 
-   
-    
+
+
     @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employee_type;
 use Illuminate\Http\Request;
+use Redirect,Response;
 
 class EmployeeTypeController extends Controller
 {
@@ -56,16 +57,17 @@ class EmployeeTypeController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employee_type  $employee_type
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee_type $employee_type)
+    public function edit($id)
     {
-        //
+      $where = array('id' => $id);
+    $department = Employee_type::where($where)->first();
+    return Response::json($department);
     }
 
     /**

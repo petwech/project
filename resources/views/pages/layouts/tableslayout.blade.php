@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>schoolBEST | Designation</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
+
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('my js\jquery-3.3.1.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -144,7 +145,7 @@
     })
 </script>
 
- 
+
 
 
 
@@ -154,32 +155,69 @@
 <script>
 $(document).ready(function(){
 
-    
-/* Edit designation */
- $('.box-body').on('click', '#des', function () {
-            var dedid = $(this).data('id');
-            $.get('edit_designation/'+dedid+'/edit', function (data) {
-                  $('#closebt').attr('href',"{{ route('deduction.index') }}");
-                  $('#form').attr('action',"{{ route('deduction.store') }}");
+
+/* Edit Employement type*/
+ $('.box-body').on('click', '#emp_type', function () {
+            var desid = $(this).data('id');
+            $.get(+desid+'/edit/', function (data) {
+                  $('#closebt').attr('href',"{{ route('emp_type.index') }}");
+                  $('#form').attr('action',"{{ route('designation.store') }}");
                 $('#customerCrudModal').html("Edit Deduction");
                 $('#btn-save').html("Update");
                 $('#btn-save').prop('disabled',false);
                 $('#depedit-modal').modal('show');
-                //$('#data_id').val(data.id);
-                //$('#f_row').val(data.deduction_type);
-                //$('#s_row').val(data.description);
+               $('#data_id').val(data.id);
+                $('#f_row').val(data.emp_type);
+                $('#s_row').val(data.description);
                 //$('#address').val(data.address);
            })
+        });
+
+
+             /* #### DELETE DESIGNATION ####*/
+                var des_id;
+
+        $('.box-body').on('click', '#deletedesi', function(){
+         des_id = $(this).data('id');
+         $('#deldesignation').modal('show');
+        });
+
+        $('#ok_button1').click(function(){
+
+          var token = $("meta[name='csrf-token']").attr("content");
+
+         $.ajax({
+            type:'delete',
+          url:"designation/"+des_id,
+          data:{
+            "id":des_id,
+              "_token": token,
+          },
+          beforeSend:function(){
+           $('#ok_button1').text('Deleting...');
+          },
+          success:function(data)
+          {
+
+            $("#desid" + des_id).remove();
+              $('#deldesignation').modal('hide');
+           setTimeout(function(){
+
+            $('#user_table').DataTable().ajax.reload();
+              $('#msg').html('Department entry deleted successfully');
+           }, 2000);
+          }
+         })
         });
 
 
 
        /* Make PaySlip  */
  $('#makeslip').click(function () {
-            
+
              var id = $(this).data('id');
             $.get('makeslip/'+id+'/edit', function (data) {
-            
+
                 // $('#closebt').attr('href',"{{ route('deduction.index') }}");
                  //$('#form').attr('action',"{{ route('deduction.store') }}");
                 $('#customerCrudModal').html("Make Slip For");
@@ -195,14 +233,14 @@ $(document).ready(function(){
                 //$('#s_row').val(data.description);
                 $('#customerCrudModal').html(data.fname);
             });
-    
+
         });
 
 
     /* add deduction */
  $('#adddeduction').click(function () {
-            
-            
+
+
                  $('#closebt').attr('href',"{{ route('deduction.index') }}");
                  $('#form').attr('action',"{{ route('deduction.store') }}");
                 $('#customerCrudModal').html("Add Deduction");
@@ -217,7 +255,7 @@ $(document).ready(function(){
                 //$('#f_row').val(data.allowance_type);
                 //$('#s_row').val(data.description);
                 //$('#address').val(data.address);
-    
+
         });
 
 
@@ -242,8 +280,8 @@ $(document).ready(function(){
 
 /* add allowance */
  $('#addAllowance').click(function () {
-            
-            
+
+
                  $('#closebt').attr('href',"{{ route('payroll.index') }}");
                  $('#form').attr('action',"{{ route('payroll.store') }}");
                 $('#customerCrudModal').html("Add Allowance");
@@ -258,7 +296,7 @@ $(document).ready(function(){
                 //$('#f_row').val(data.allowance_type);
                 //$('#s_row').val(data.description);
                 //$('#address').val(data.address);
-    
+
         });
 
 
@@ -296,31 +334,45 @@ $(document).ready(function(){
            })
         });
 
-           /* Delete customer */
-        $('body').on('click', '#delete-depart', function () {
-            var customer_id = $(this).data("id");
-            var token = $("meta[name='csrf-token']").attr("content");
-            confirm("Are You sure want to delete !");
 
-            $.ajax({
-                type: "DELETE",
-                url: "department/"+customer_id,
-                data: {
-                    "id": customer_id,
-                    "_token": token,
-                },
-                success: function (data) {
-                    $('#msg').html('Department entry deleted successfully');
-                    $("#depid" + customer_id).remove();
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
-            });
-        });
+     /* #### DELETE DEPARTMENT ####*/
+        var user_id;
+
+$(document).on('click', '#delete-depart1', function(){
+ user_id = $(this).data('id');
+ $('#deletedepartment').modal('show');
+});
+
+$('#ok_button').click(function(){
+
+  var token = $("meta[name='csrf-token']").attr("content");
+
+ $.ajax({
+    type:'delete',
+  url:"department/"+user_id,
+  data:{
+    "id":user_id,
+      "_token": token,
+  },
+  beforeSend:function(){
+   $('#ok_button').text('Deleting...');
+  },
+  success:function(data)
+  {
+
+    $("#depid" + user_id).remove();
+      $('#deletedepartment').modal('hide');
+   setTimeout(function(){
+
+    $('#user_table').DataTable().ajax.reload();
+      $('#msg').html('Department entry deleted successfully');
+   }, 2000);
+  }
+ })
+});
     });
 
-    
+
 
 
 </script>
