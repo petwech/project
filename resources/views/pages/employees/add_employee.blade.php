@@ -523,7 +523,7 @@
                         // Read data and create <option >
                         for(var i=0; i<len; i++){
 
-                            var id = response['data'][i].desi_id;
+                            var id = response['data'][i].id;
                             var name = response['data'][i].designation;
 
                             var option = "<option value='"+id+"'>"+name+"</option>";

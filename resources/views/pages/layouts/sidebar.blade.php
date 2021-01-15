@@ -30,7 +30,7 @@
               <ul class="treeview-menu">
                 <li><a href="{{ route('department.index') }}"><i class="fa fa-circle-o"></i> Department</a></li>
                 <li><a href="{{ route('designation.index') }}"><i class="fa fa-circle-o"></i> Designation</a></li>
-                <li><a href="emp_type"><i class="fa fa-circle-o"></i> Employment Type</a></li>
+                <li><a href="{{route('emp_type.index')}}"><i class="fa fa-circle-o"></i> Employment Type</a></li>
                 <li><a href="{{ route('employee.create') }}"><i class="fa fa-circle-o"></i> Add Employees</a></li>
                 <li><a href="{{ route('employee.index') }}"><i class="fa fa-circle-o"></i> Employees List</a></li>
               </ul>

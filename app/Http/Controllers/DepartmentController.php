@@ -40,15 +40,15 @@ class DepartmentController extends Controller
      */
 
 
-   
+
     public function store(Request $request)
     {
-       
+
 
       $r=$request->validate([
             'department' => 'required',
             'description' => 'required',
-            
+
         ]);
 
         $depId = $request->depart_id;
@@ -84,7 +84,7 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-          $where = array('id' => $id);
+        $where = array('id' => $id);
         $department = Department::where($where)->first();
         return Response::json($department);
     }
@@ -110,7 +110,7 @@ class DepartmentController extends Controller
     public function destroy( $id)
     {
           Department::find($id)->delete($id);
-  
+
     return response()->json([
         'success' => 'Record deleted successfully!'
     ]);

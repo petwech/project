@@ -1,17 +1,17 @@
-@extends('pages.layouts.tableslayout')
+
+@extendS('pages.layouts.tableslayout')
 
 @section('content')
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Human Resource
-            <small>Designation</small>
+            <small>Departments</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="../../dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Designation</li>
+            <li class="active">Department</li>
         </ol>
     </section>
 
@@ -20,28 +20,34 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-12">
-                <?php //echo $msg; ?>
+             @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p id="msg">{{ $message }}</p>
+        </div>
+    @endif
                 <div class="col-md-4">
                     <div class="box">
                         <div class="box-header with-border">
-                            <div class="box-title">Add A Designation</div>
+                            <div class="box-title">Add A DESIGNATION</div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <form action="add_designation" method="post">
-                                        <div class="col-md-12" style="margin-top: 20px">
-                                            <select name="department" class="form-control select2">
-                                                <option value="">--Select Department--</option>
-                                                  @foreach($deps as $dept)
-                                                <option value="{{$dept->id}}">{{$dept->department}}</option>
-                                                 @endforeach
-                                            </select>
-                                        </div>
+                                    <form action="{{ route('designation.store') }}" method="post">
+                                      <div class="col-md-12" style="margin-top:20px">
+                                          <label>Department</label><br />
+                                          <select class="form-control select2" name="department" id="department" required>
+                                              <option selected="false">-- Select Department --</option>
 
-                                        <div class="col-md-12" style="margin-top: 20px">
-                                            <input type="text" name="designation" class="form-control" placeholder="Enter Designation Name" required />
+                                              @foreach($deps as $dept)
+                                              <option value="{{ $dept->id }}">{{ $dept->department}} </option>
+                                              @endforeach
+                                              <?php // } ?>
+                                          </select>
+                                      </div>
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <input type="text" name="designation" class="form-control" placeholder="Enter Designation" required />
                                         </div>
 
                                 </div>
@@ -50,7 +56,7 @@
                         </div>
                         <!-- ./box-body -->
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary btn-block" name="addDesignation" ><i class="fa fa-save"></i> Save Designation</button>
+                            <button type="submit" class="btn btn-primary btn-block" name="addDepartment" ><i class="fa fa-save"></i> Save Designation</button>
                         </div>
                     </div>
                     <!-- /.box -->
@@ -77,31 +83,38 @@
                                 </thead>
                                 <tbody>
 
-                                <?php $i = 1;?>
+
+                                <?php $i=1; ?>
                                 @foreach($desi as $des)
-                                <tr id="desid{{ $des->desi_id }}" >
-                                    <td>{{ $i }}</td>
-                                    <td>{{ $des->designation }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><form action="" method="POST">
-                                                  <a href="javascript:void(0)" class="btn btn-success" id="des" data-toggle="modal" data-id="{{ $des->desi_id }}">Edit </a>
+                                    <tr id="desid{{ $des->id }}">
+                                    <td>{{$i}}</td>
+                                    <td>{{$des->designation}}</td>
+                                    <td>{{$des->id}}</td>
+
+                                   <td>
+                                     <form action="" method="POST">
+                                                  <a href="javascript:void(0)" class="btn btn-success" id="des" data-toggle="modal" data-id="{{ $des->id }}">Edit </a>
 
                                                      <meta name="csrf-token" content="{{ csrf_token() }}">
-                                    
+
                                    </td>
-                                   <td> <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <a id="delete-depart" data-id="{{ $des->desi_id }}" class="btn btn-danger delete-user">Delete</a></</td>
+                                   <td>
+                                        <a id="deletedesi" data-id="{{ $des->id }}" class="btn btn-danger delete-user">Delete</a></</td>
                                </form>
-                      </td>
                                 </tr>
-                                <?php $i++;  ?>
-                                @endforeach
 
-
+                                <?php $i++;?>
+                                    @endforeach
 
                                 </tbody>
                             </table>
+
+                         @include('pages.modals.employeemodal')
+
+
+
+
+
                         </div>
                         <!-- ./box-body -->
 
@@ -115,21 +128,7 @@
         <!-- /.row (main row) -->
 
     </section>
-    <!-- /.content -->
-</div>
 
- <!-- Add and Edit customer modal -->
-    <div class="modal fade" id="editmodal" aria-hidden="true" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="customerCrudModal"></h4>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     @endsection

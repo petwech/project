@@ -32,7 +32,7 @@
       <?php// echo $msg; ?>
           <div class="box">
             <div class="box-header with-border">
-                 <div class="box-title">Create Payslip</div>        
+                 <div class="box-title">Create Payslip</div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -47,60 +47,60 @@
                 <th>NHIF</th>
                 <th>NSSF</th>
 				        <th>Phone</th>
-          
+
               <th>Edit</th>
               </tr>
             </thead>
               <tbody>
     <?php
       $i = 1;
-  
+
     ?>
     @foreach($allemp as $all)
-      
-      
+
+
         <tr id="id{{ $all->emp_id }}">
           <td style="vertical-align: middle;"><?php echo $i; ?></td>
-          <td style="vertical-align: middle;">{{ $all->fname }}</td> 
-          <td style="vertical-align: middle;">{{ $all->designation }}</td>     
+          <td style="vertical-align: middle;">{{ $all->fname }}</td>
+          <td style="vertical-align: middle;">{{ $all->designation }}</td>
           <td style="vertical-align: middle;">{{ $all->id_no }}</td>
           <td style="vertical-align: middle;">{{ $all->kra }}</td>
           <td style="vertical-align: middle;">{{ $all->nhif }}</td>
-          <td style="vertical-align: middle;">{{ $all->nssf }}</td>          
+          <td style="vertical-align: middle;">{{ $all->nssf }}</td>
           <td style="vertical-align: middle;">{{ $all->contact1 }}</td>
             <?php //include('modal_hr.php');   ?>
 
              <form action="" method="POST">
-         
-      <td align="center"><a href="javascript:void(0)" data-id="{{ $all->emp_id }}" id="makeslip" data-toggle="modal"><i class="fa fa-edit"></i></a>
-         <meta name="csrf-token" content="{{ csrf_token() }}">
-          </td> 
 
-                                    
-          </form>   
-          
-        </tr>     
-              
+      <td align="center"><a href="javascript:void(0)" data-id="{{ $all->emp_id }}" id="createpay" data-toggle="modal"><i class="fa fa-edit"></i></a>
+         <meta name="csrf-token" content="{{ csrf_token() }}">
+          </td>
+
+
+          </form>
+
+        </tr>
+
     <?php     $i++; ?>
     @endforeach
 
-              
+
             </tbody>
           </table>
-               @include('pages.modals.employeemodal')
+               @include('pages.employees.payroll.payrol')
             </div>
 
- 
+
 
 
 
             <!-- ./box-body -->
           </form>
           </div>
-          <!-- /.box -->	  
-		  
+          <!-- /.box -->
+
         </div>
-        <!-- /.col -->    
+        <!-- /.col -->
       </div>
       <!-- /.row (main row) -->
 

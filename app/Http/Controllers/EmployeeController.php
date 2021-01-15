@@ -20,12 +20,12 @@ class EmployeeController extends Controller
 
     {
 
-        
+
             $allemp=employee::all();
 
         //return array of data
         $this->data = array(
-            
+
             'allemp'=>$allemp,
         );
 
@@ -43,12 +43,12 @@ class EmployeeController extends Controller
 
     {
 
-        
+
             $allemp=employee::all();
 
         //return array of data
         $this->data = array(
-            
+
             'allemp'=>$allemp,
         );
 
@@ -76,28 +76,28 @@ class EmployeeController extends Controller
             ->Get();
 
              //fetch employment type
-        $des = Designation::orderby("desi_id", "asc")
+        $des = Designation::orderby("id", "asc")
             ->select( 'designation')
             ->Get();
 
                 // get employee data from empno submited//
-              
+
              $where = array('emp_id' => $employee);
              $emp = employee::where($where)->first();
-             
+
           $Departmentid =array('id'=>$emp->department);
           $depadata=Department::where($Departmentid)->first();
 
-          $designationid=array('desi_id'=>$emp->designation);
+          $designationid=array('id'=>$emp->designation);
            $desidata=Designation::where($designationid)->first();
-        
+
            $Employee_type=array('id'=>$emp->emp_type);
            $empdata=Employee_type::where($Employee_type)->first();
-        
+
 
 
            $this->data = array(
-            
+
             'emp'=>$emp,
             'depts'=>$depts,
             'type'=>$type,
@@ -108,10 +108,10 @@ class EmployeeController extends Controller
         );
 
         return view('pages.employees.show_employee',$this->data);
-        
+
     }
-      
-    
+
+
 
  /**
      * Show the form for editing the specified resource.
@@ -132,7 +132,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-       
+
         $temployee = employee::Get()->count();
         //employee number
         $count = $temployee + 1;
@@ -185,9 +185,9 @@ class EmployeeController extends Controller
             $imagemodel->photo="$profileImage";
             $imagemodel->save();
         }
-             
 
-        
+
+
        $empID = $request->empID;
        $empno=$request->empno;
 
@@ -201,10 +201,10 @@ class EmployeeController extends Controller
         employee::updateOrCreate(
         ['id' => $empID,'emp_id'=>$empno],
 
-        [  'emp_id' => $request->empno, 
+        [  'emp_id' => $request->empno,
            'fname' => $request->fname,
            'id_no' => $request->idno,
-          
+
            'marital_status' => $request->marital,
            'dob' => $request->dob,
            'gender' => $request->gender,
@@ -231,13 +231,13 @@ class EmployeeController extends Controller
             $msg = 'Employee entry created successfully.';
         else
             $msg = 'Employee data is updated successfully';
-        return redirect()->route('employee.index')->with('success',$msg); 
-        
+        return redirect()->route('employee.index')->with('success',$msg);
 
-        
+
+
     }
 
-   
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -246,17 +246,17 @@ class EmployeeController extends Controller
      */
     public function show( $employee)
     {
-       
+
 
              // Fetch Employees by Departmentid
-        $empData['data'] = Designation::orderby("desi_id","asc")
-            ->select('desi_id','designation')
+        $empData['data'] = Designation::orderby("id","asc")
+            ->select('id','designation')
             ->where('department',$employee)
             ->get();
 
-         
+
         return response()->json($empData);
-        
+
     }
     /**
      * Show the form for editing the specified resource.
@@ -292,28 +292,28 @@ class EmployeeController extends Controller
             ->Get();
 
              //fetch employment type
-        $des = Designation::orderby("desi_id", "asc")
+        $des = Designation::orderby("id", "asc")
             ->select( 'designation')
             ->Get();
 
                 // get employee data from empno submited//
-              
+
              $where = array('emp_id' => $employee);
              $emp = employee::where($where)->first();
-             
+
           $Departmentid =array('id'=>$emp->department);
           $depadata=Department::where($Departmentid)->first();
 
-          $designationid=array('desi_id'=>$emp->designation);
+          $designationid=array('id'=>$emp->designation);
            $desidata=Designation::where($designationid)->first();
-        
+
            $Employee_type=array('id'=>$emp->emp_type);
            $empdata=Employee_type::where($Employee_type)->first();
-        
+
 
 
            $this->data = array(
-            
+
             'emp'=>$emp,
             'depts'=>$depts,
             'type'=>$type,
