@@ -213,9 +213,16 @@ $(document).ready(function(){
 
 
        /* Make PaySlip  */
+
  $('#createpay').click(function () {
-// var id = $(this).data('id');
-            //$.get('makeslip/'+id+'/edit', function (data) {
+var id = $(this).data('id');
+            $.get('makeslip/'+id+'/edit', function (data) {
+
+//$('#makeslip').click(function () {
+
+           //var id = $(this).data('id');
+           //$.get('makeslip/'+id+'/edit', function (data) {
+
 
                 // $('#closebt').attr('href',"{{ route('deduction.index') }}");
                  //$('#form').attr('action',"{{ route('deduction.store') }}");
@@ -226,12 +233,17 @@ $(document).ready(function(){
                  //$('#second').html("Employee  No:");
                  //$('#s_row').attr('placeholder',"Employee Number");
                 //$('#btn-save').prop('disabled',false);
-                $('#createpay').modal('show');
-              //  $('#data_id').val(data.emp_id);
+                $('#create').modal('show');
+                $('#empno').val(data.emp_id);
                 //$('#f_row').val(data.fname);
                 //$('#s_row').val(data.description);
+
                 //$('#customerCrudModal').html(data.fname);
-            //});
+          // });
+
+              //  $('#customerCrudModal').html(data.fname);
+         });
+
 
         });
 
@@ -375,5 +387,25 @@ $('#ok_button').click(function(){
 
 
 </script>
+
+<script>
+(function () {
+    var year_start = 2019;
+    var year_end = (new Date).getFullYear(); //current year
+    var selected_year = 0; //1992, 0 first option
+
+    var option = '<select id="year" name="year">';
+        option += '<option value="">year</option>';  //first option
+
+    for (var i = 0; i <= (year_end - year_start); i++) {
+        var year = (year_start+i);
+        option += '<option value="' + year + '"'+(year == selected_year ? ' selected' : '')+'>' + year + '</option>';
+    }
+
+    option += '</select>';
+    document.getElementById('year-list').innerHTML = option;
+})();
+</script>
+
 
 </html>

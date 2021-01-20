@@ -1,5 +1,5 @@
 
-<div id="createpay" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="create" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,12 +10,12 @@
                     Select Month And Year to create payslip
                 </div>
             </div>
-    <form action="" method="post">
-            <div class="modal-body">
-               <input type="test" name="empno" value="<?php// echo $empno; ?>" />
+    <form action="{{ route('payslip.index') }}" method="post">
+            <div  class="modal-body">
+               <input  type="hidden" id="empno" name="empno" value="<?php //echo $empno; ?>" />
 
                <label>Financial Year</label><br />
-                <select name="fyear" class="form-control select2" style="width:100%" required>
+                <select id="year-list" name="fyear" class="form-control select2" style="width:100%" required>
                 <option value="<?php //echo $current_year; ?>"><?php //echo $current_year; ?></option>
                 <?php
 			//	$yeaa = $db->query("SELECT * FROM financial_year ") or die(mysqli_error($db));
@@ -51,10 +51,11 @@
                     No
                 </button>
 
-                 <button type="submit" class="btn btn-sm btn-success pull-right" name="Create">
+                 <button type="submit" class="btn btn-sm btn-success pull-right" id="savepay" name="Create">
                     Proceed <i class="fa fa-arrow-circle-o-right"></i>
                 </button>
             </div>
+              @csrf
     </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

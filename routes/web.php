@@ -31,6 +31,7 @@ Route::Post('emp_type/store','EmployeeTypeController@store')->name('emp_type.sto
 Route::Get('payslip','EmployeeController@payslip')->name('payslip.make');
 Route::resource('payroll','AllowanceController');
 Route::get('payroll/{id}/edit/','AllowanceController@edit');
+Route::get('payroll','PayrollController@index')->name('payslip.index');
 
 Route::resource('deduction','DeductionController');
 Route::get('deduction/{id}/edit/','DeductionController@edit');
