@@ -213,6 +213,7 @@ $(document).ready(function(){
 
 
        /* Make PaySlip  */
+<<<<<<< HEAD
 
  $('#createpay').click(function () {
 var id = $(this).data('id');
@@ -223,6 +224,18 @@ var id = $(this).data('id');
            //var id = $(this).data('id');
            //$.get('makeslip/'+id+'/edit', function (data) {
 
+=======
+<<<<<<< HEAD
+ $('#createpay').click(function () {
+// var id = $(this).data('id');
+            //$.get('makeslip/'+id+'/edit', function (data) {
+=======
+ $('#makeslip').click(function () {
+
+             var id = $(this).data('id');
+            $.get('makeslip/'+id+'/edit', function (data) {
+>>>>>>> main
+>>>>>>> main
 
                 // $('#closebt').attr('href',"{{ route('deduction.index') }}");
                  //$('#form').attr('action',"{{ route('deduction.store') }}");
@@ -237,6 +250,7 @@ var id = $(this).data('id');
                 $('#empno').val(data.emp_id);
                 //$('#f_row').val(data.fname);
                 //$('#s_row').val(data.description);
+<<<<<<< HEAD
 
                 //$('#customerCrudModal').html(data.fname);
           // });
@@ -244,6 +258,15 @@ var id = $(this).data('id');
               //  $('#customerCrudModal').html(data.fname);
          });
 
+=======
+<<<<<<< HEAD
+                //$('#customerCrudModal').html(data.fname);
+            //});
+=======
+                $('#customerCrudModal').html(data.fname);
+            });
+>>>>>>> main
+>>>>>>> main
 
         });
 
