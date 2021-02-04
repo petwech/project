@@ -31,7 +31,7 @@ Route::Post('emp_type/store','EmployeeTypeController@store')->name('emp_type.sto
 Route::Get('payslip','EmployeeController@payslip')->name('payslip.make');
 Route::resource('payroll','AllowanceController');
 Route::get('payroll/{id}/edit/','AllowanceController@edit');
-Route::get('payroll','PayrollController@index')->name('payslip.index');
+Route::get('payroll','PayrollController@index')->name('payroll.index');
 
 Route::resource('deduction','DeductionController');
 Route::get('deduction/{id}/edit/','DeductionController@edit');
@@ -50,3 +50,8 @@ Route::delete('designation/{desi_id}','DepartmentController@destroy')->name('des
 
 Route::resource('customers','CustomerController');
 Route::get('customers/{id}/edit/','CustomerController@edit');
+
+Route::resource('inventory','MaterialController');
+
+Route::resource('product','ProductController');
+Route::post('product/save','ProductController@store');
