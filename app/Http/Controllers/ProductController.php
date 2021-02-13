@@ -50,16 +50,31 @@ class ProductController extends Controller
 
         ]);
 
+        $checkproduct= $request->input('product');
+
+       //####  Check If Data Exists ###//
+        $isExist = Product::select("*")
+                      ->where('name',$checkproduct)
+                      ->exists();
+
+      if ($isExist) {
+        $msg = 'Product Exists in DataBase';
+        return redirect()->route('product.index')->with('success',$msg);
+
+      }else{
         $prodId = $request->Prod_id;
         Product::updateOrCreate(
-        ['id' => $prodId],
+       ['id' => $prodId],
         ['name' => $request->product,'department' => $request->department, 'descript'=>$request->description]
-                                   );
-        if(empty($request->depart_id))
-            $msg = 'Department entry created successfully.';
+                                  );
+        if(empty($request->$prodId))
+           $msg = 'Product entry created successfully.';
         else
-            $msg = 'Department data is updated successfully';
-        return redirect()->route('department.index')->with('success',$msg);
+          $msg = 'Product is updated successfully';
+          return redirect()->route('product.index')->with('success',$msg);
+      }
+
+
 
     }
 

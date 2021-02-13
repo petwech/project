@@ -20,7 +20,11 @@
     <!-- Small boxes (Stat box) -->
     <div class="row">
     <div class="col-md-12">
-    <?php //echo $msg; ?>
+      @if ($message = Session::get('success'))
+ <div class="alert alert-success">
+     <p id="msg">{{ $message }}</p>
+ </div>
+ @endif
      <div class="col-md-4">
         <div class="box">
           <div class="box-header with-border">

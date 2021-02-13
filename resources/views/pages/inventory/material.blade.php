@@ -31,17 +31,14 @@
           <div class="box-body">
          <div class="row">
        <div class="col-md-12">
-    <form action="" method="post">
+    <form action="{{route('material.store')}}" method="post">
 
           <div class="col-md-12" style="margin-top: 20px;">
           <select class="form-control select2" name="mat_name" id="mat_name" required>
           <option value="">-- Select Material Name --</option>
-          <?php
-    //$klass = $db->query("SELECT * FROM products") or die(mysqli_error($db));
-    //while($klas = mysqli_fetch_array($klass)){
-    ?>
-          <option value="<?php //echo $klas['prodID']; ?>"><?php //echo $klas['name']; ?></option>
-          <?php //} ?>
+           @foreach ($prod as $prodct)
+          <option value="{{$prodct->name}}">{{$prodct->name}}</option>
+           @endforeach
           </select>
       </div>
 
@@ -88,7 +85,8 @@
     </div>
         </div>
         <!-- /.box -->
-        </form>
+        @csrf
+      </form>
     </div>
     <div class="col-md-8">
         <div class="box">
@@ -128,16 +126,12 @@
           </thead>
             <tbody>
   <?php
-    //$i = 1;
-
-    //$today=('y-m-d');
-//$uus = $db->query("SELECT * FROM material ORDER BY matID DESC") or die(mysqli_error($db));
-  //  while($row=mysqli_fetch_array($uus)){
-    //  $prodID = $row['matID'];
-  ?>
-      <tr class="<?php //echo $prodID; ?>">
-        <td style="vertical-align: middle;"><?php //echo $i; ?></td>
-        <td style="vertical-align: middle;"><?php //echo ucwords(strtolower($row['colour'])); ?></td>
+    $i = 1;
+?>
+    @foreach($material as $mat)
+      <tr class="{{$mat->id}}">
+        <td style="vertical-align: middle;"><?php echo $i; ?></td>
+        <td style="vertical-align: middle;">{{ strtoupper($mat->colour) }}</td>
 
         <td style="vertical-align: middle;"><?php //echo $row['cm']; ?></td>
           <td style="vertical-align: middle;"><?php// echo $row['kgs']; ?></td>
@@ -148,7 +142,7 @@
       </tr>
 
   <?php //$i++; } ?>
-
+     @endforeach
           </tbody>
         </table>
           </div>

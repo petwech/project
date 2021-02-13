@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Material;
+use App\Product;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -14,7 +15,13 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return view('pages.inventory.material');
+      $prod= Product::all();
+      $material=Material::all();
+
+      return view('pages.inventory.receive_material',[
+        'prod'=>$prod,
+        'material'=> $material,
+      ]);
     }
 
     /**
@@ -35,7 +42,24 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $kgs=$request->Input('kgs');
+            $cm=$request->input('cm');
+            $colour=$request->input('colour');
+
+
+            $sql=Material::select("*")
+                            ->where('cm', $cm)
+                            ->where('colour', $colour)
+                            ->get();
+
+           //if($sql)
+          // {
+          //$kgs= $sql->('');
+          $num_rows= $sql->count();
+             dd($num_rows);
+           //}else {
+
+          // }
     }
 
     /**

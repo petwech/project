@@ -51,7 +51,8 @@ Route::delete('designation/{desi_id}','DepartmentController@destroy')->name('des
 Route::resource('customers','CustomerController');
 Route::get('customers/{id}/edit/','CustomerController@edit');
 
-Route::resource('inventory','MaterialController');
+Route::resource('material','MaterialController');
+Route::post('material/store','MaterialController@store')->name('material.store');
 
 Route::resource('product','ProductController');
 Route::post('product/save','ProductController@store');
